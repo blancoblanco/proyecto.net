@@ -1,0 +1,65 @@
+﻿
+@model IEnumerable<ProductoViewModel>
+
+<div class="card text-primary">
+    <div class="card-header text-center">
+        <h5>Lista de Productos</h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a asp-action="CreateProductos" class="btn btn-outline-primary btn-sm">Crear Nuevo</a>
+                        <hr />
+                        <h5 class="panel-title">Productos</h5>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-hover table-responsive table-striped" id="MyTable">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.nombre)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.descripcion)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.precio)
+                                    </th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.nombre)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.descripcion)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.precio)
+                                        </td>
+
+                                        <td>
+                                            <a asp-action="EditProducto" asp-route-id="@item.idProducto" class="btn btn-outline-warning btn-sm">Editar</a>
+                                            <a asp-action="DetailsProducto" asp-route-id="@item.idProducto" class="btn btn-outline-info btn-sm">Detalles</a>
+                                            <a asp-action="Deleteproducto" asp-route-id="@item.idProducto" class="btn btn-outline-danger btn-sm">Eliminar</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer text-muted text-center">
+        Crud Productos
+    </div>
+</div>
+
